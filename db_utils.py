@@ -5,26 +5,6 @@ import psycopg2
 from sqlalchemy import create_engine
 import sqlalchemy
 
-#Figure yout how to add docustring proprly
-#" " 
-Initalises yaml file as parametere 
-
-Defines: 
-function1 creates the engine using the credentials in the yaml file 
-function2 initalises the engine using the _create_engine method
-function3 extracts the data from the loan database 
-unction4 saves the loan data within the loan database as a csv file 
-#function5 loads the loan data from the cvs file from function 4 into a Pandas Dataframe 
-#find name for error handling thing 
-#" " 
-RDS_HOST: eda-projects.cq2e8zno855e.eu-west-1.rds.amazonaws.com
-RDS_PASSWORD: EDAloananalyst
-RDS_USER: loansanalyst
-RDS_DATABASE: payments
-RDS_PORT: 5432
-import yaml
-
-
 with open('credentials.yaml', 'r') as f:
     credentials = yaml.safe_load(f)
 
