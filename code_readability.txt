@@ -1,0 +1,11 @@
+•	Meaningful Naming: Use descriptive names for methods and variables to enhance code readability. For example, create_list_of_website_links() over links() and use for element in web_element_list instead of for i in list.
+•	Eliminate Code Duplication: Identify repeated code blocks and refactor them into separate methods or functions. This promotes code reusability and reduces the likelihood of bugs.
+•	Single Responsibility Principle (SRP): Ensure that each method has a single responsibility, focusing on a specific task. If a method handles multiple concerns, split it into smaller, focused methods.
+•	Access Modifiers: Make methods private or protected if they are intended for internal use within the class and not externally accessible
+•	Main Script Execution: Use the if __name__ == "__main__": statement to include code blocks that should only run when the script is executed directly, not when imported as a module
+•	Consistent Import Order: Organize import statements in a consistent manner, such as alphabetically, and place from statements before import statements to maintain readability
+•	Avoid Nested Loops: Minimize nested loops whenever possible to improve code efficiency and reduce complexity
+•	Minimal Use of self: When writing methods in a class, only use self for variables that store information unique to each object created from the class. This helps keep the code organized and ensures that each object keeps its own special data separate from others.
+•	Avoid import *: Import only the specific methods or classes needed from a module to enhance code clarity and prevent naming conflicts
+•	Consistent Docstrings: Provide clear and consistent docstrings for all methods, explaining their purpose, parameters, and return values. This aids code understanding for other developers.
+•	Type Annotations: Consider adding type annotations to method signatures, variables, and return values to improve code maintainability and catch type-related errors during development
