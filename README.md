@@ -21,8 +21,10 @@ The Aim of the project is to become familiar with the loan information dataset i
 The goal of this project is to gain proficiency in navigating and interpreting the loan information dataset. This is essential to enable the company to make well-informed decisions regarding loan approvals and, simultaneously, to effectively manage and mitigate any associated risks. It also serves as a significant milestone within the data sicence bootcamp, offering an industry specific example for users to understand the steps involved in analysing a dataset and the impact of analytical insights on strategic decision-making within a real-world business context.
 
 ###
-- using classes
-- defining functions
+- Using classes
+- Class inheritance
+- Loading data from different file types (csv, yaml)
+- Defining functions
 - 
 
 
