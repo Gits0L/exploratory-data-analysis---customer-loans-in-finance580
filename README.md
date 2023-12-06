@@ -33,13 +33,13 @@ The Aim of the project is to become familiar with the loan information dataset i
 - Extracting data
 - Using data to make informed predictions and suggestions
 
-  ##### Installation
+  #### Installation
 
-  ##### Usage
+  #### Usage
 
-  ##### File structure
+  #### File structure
 
-  ##### Licesning information 
+  #### Licesning information 
 
 
 
