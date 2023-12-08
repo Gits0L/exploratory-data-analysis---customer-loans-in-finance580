@@ -164,18 +164,18 @@ from matplotlib import pyplot
 import seaborn as sns
 from scipy.stats import normaltest
 class Plotter:
-         """"
-        Class plots data using various visualisation methods
+    """"
+    Class plots data using various visualisation methods
 
-        Attributes: 
-        - loans_df: Dataset containing loan information 
+    Attributes: 
+    - loans_df: Dataset containing loan information 
 
-        Methods: 
-        - null_percent_funded: Checks the percentage of null values in the funded amount collumn against total values
-        - null_percent_term: Checks the percentage of null values in the term collumn against total values
-        - null_percent_int_rate: Checks the percentage of null value in the interest rate collumn against total values
-        - skew check: Visualises the skew of each collumn that does not contain numerical values 
-        """"
+    Methods: 
+    - null_percent_funded: Checks the percentage of null values in the funded amount collumn against total values
+    - null_percent_term: Checks the percentage of null values in the term collumn against total values
+    - null_percent_int_rate: Checks the percentage of null value in the interest rate collumn against total values
+    - skew check: Visualises the skew of each collumn that does not contain numerical values 
+    """
     def __init__(self, loans_df):
         self.loans_df = loans_df
     
@@ -221,25 +221,11 @@ plotting.null_percent_int_rate()
 plotting.skew_check()
 plotting.outlier_removal()
 
-
-class Loan_analysis:
-    """"
-    Class analyses the transformed and imputed data 
-
-    Attributes
-    - loans_df: Data with loan information 
-
-    Methods
-    - 
-    """"
-    def __init__(self, loans_df):
-        self.loans_df = loans_df
     
-    
-        loans_df['total_payment'].sum()/loans_df['funded_amount_inv'].sum() * 100
-        loans_df[loans_df['months_to_recovery'] <= 6]['total_payment'].sum() / loans_df['loan_amount'].sum() * 100
-        label = ['Overall Recovery', 'Recovery Up to 6 Months']
-        percentages = ['percent_recovery', 'percent_recovery_up_to_6_months']
+loans_df['total_payment'].sum()/loans_df['funded_amount_inv'].sum() * 100
+loans_df[loans_df['months_to_recovery'] <= 6]['total_payment'].sum() / loans_df['loan_amount'].sum() * 100
+label = ['Overall Recovery', 'Recovery Up to 6 Months']
+percentages = ['percent_recovery', 'percent_recovery_up_to_6_months']
 
 
 percent_recovery = loans_df['total_payment'].sum()/loans_df['loan_amount'].sum() * 100
