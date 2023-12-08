@@ -219,7 +219,6 @@ plotting.null_percent_funded()
 plotting.null_percent_term()
 plotting.null_percent_int_rate()
 plotting.skew_check()
-plotting.outlier_removal()
 
     
 loans_df['total_payment'].sum()/loans_df['funded_amount_inv'].sum() * 100
@@ -288,6 +287,8 @@ def sum_before_charged_off(self):
 def money_owed_choff_late(self):
     money_owed_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'loan_amount'].sum() - loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum()
     print(f'The amount of revenue owed by loanees whose loan status is either charged off or late is {money_owed_charged_off}')
+    late = loans_df[loans_df['loan_status'].str.contains('late', case=False)]
+    money_owed_late_payments = late['out_prncp'].sum() 
     print(f'2 {money_owed_late_payments}')
     money_owed_charged_off_and_late = (money_owed_late_payments + money_owed_charged_off)/ loans_df['loan_amount'].sum() * 100
     money_owed_charged_off_and_late_rounded = round(money_owed_charged_off_and_late)
@@ -304,5 +305,103 @@ analyse.sum_before_charged_off()
 analyse.money_owed_choff_late()
 
 class Loan_predictors:
-    def __init(self, loans_df):
-        self.loans_df = 
+
+    """
+    Class looks at loan status to compare between late, current, fully paid and charged off lons 
+    This is to see if any other factors can have an influence on the loan status and shows insights into predicting the future of a loan/ probability it will be paid off
+
+    Attributes
+    - loans_df = Dataset 
+
+    Methods
+    - dataset_charged_off_late: Creates a subset of data where the loan status is charged off and late
+    - dataset_paid_and_current: Creates a subset of data where the loan status is curren and paid off
+    - loans_grade_count: Visualises the the grade of loans grouped by loan status
+    - loans_purpose_count: Visualises the purpose of the loans grouped by loan status
+    - loans_home_ownership_count: Visaulises the status of home ownership grouped by loan status
+    - annual_income_comparison: Visualises annual income using a box plot grouped by loan status
+    """
+    def __init__(self, loans_df):
+        self.loans_df = loans_df
+
+    def dataset_charged_off_late(self):
+        loans_df_chargedoff_late = loans_df[loans_df['loan_status'].isin(['Charged Off']) & loans_df['loan_status'].isin(['Late'])] #Saves data where loan status is charged off 
+        loans_df_chargedoff_late.to_csv('filtered_loans.csv', index=False)
+
+    def dataset_paid_and_current(self):
+        loans_paid_current_and_paid = loans_df[loans_df['loan_status'].isin(['Fully paid']) & loans_df['loan_status'].isin(['Current'])] #Saves data where loan status is current
+        loans_paid_current_and_paid.to_csv('paid_and_current_loans.csv', index=False)
+
+    def loans_grade_count(self):
+        grouped_data = loans_df.groupby(['grade', 'loan_status']).size().unstack(fill_value=0)
+        fig, ax = plt.subplots()
+        bar_width = 0.5
+        bar_positions = range(len(grouped_data.index))
+        for i, status in enumerate(grouped_data.columns):
+            ax.bar(
+                [pos + i * bar_width for pos in bar_positions],
+                grouped_data[status],
+                width=bar_width,
+                label=status
+            )
+        ax.set_xlabel('Grade')
+        ax.set_ylabel('Count')
+        ax.set_title('Loan grade by loan status')
+        ax.set_xticks([pos + bar_width * (len(grouped_data.columns) - 1) / 2 for pos in bar_positions])
+        ax.set_xticklabels(grouped_data.index)
+        ax.legend()
+        plt.show()
+
+    def loans_purpose_count(self):
+        grouped_data = loans_df.groupby(['purpose', 'loan_status']).size().unstack(fill_value=0)
+        fig, ax = plt.subplots()
+        bar_width = 0.5
+        bar_positions = range(len(grouped_data.index))
+        for i, status in enumerate(grouped_data.columns):
+            ax.bar(
+                [pos + i * bar_width for pos in bar_positions],
+                grouped_data[status],
+                width=bar_width,
+                label=status
+            )
+        ax.set_xlabel('Reason for loan')
+        ax.set_ylabel('Count')
+        ax.set_title('Purpose of loan by Status')
+        ax.set_xticks([pos + bar_width * (len(grouped_data.columns) - 1) / 2 for pos in bar_positions])
+        ax.set_xticklabels(grouped_data.index)
+        ax.legend()
+        plt.show()
+
+    def loans_home_ownership_count(self):
+        grouped_data = loans_df.groupby(['home_ownership', 'loan_status']).size().unstack(fill_value=0)
+        fig, ax = plt.subplots()
+        bar_width = 0.5
+        bar_positions = range(len(grouped_data.index))
+        for i, status in enumerate(grouped_data.columns):
+            ax.bar(
+                [pos + i * bar_width for pos in bar_positions],
+                grouped_data[status],
+                width=bar_width,
+                label=status
+            )
+        ax.set_xlabel('Home ownership status')
+        ax.set_ylabel('Count')
+        ax.set_title('Comparison of home ownership status by loan by Status')
+        ax.set_xticks([pos + bar_width * (len(grouped_data.columns) - 1) / 2 for pos in bar_positions])
+        ax.set_xticklabels(grouped_data.index)
+        ax.legend()
+        plt.show()     
+    
+    def annual_income_comparison(self):
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(x='loan_status', y='annual_inc', data=loans_df, showfliers=False)
+        sns.stripplot(x='loan_status', y='annual_inc', data=loans_df, color='black', jitter=True, alpha=0.5)
+        plt.title('Comparison of annual income and loan status')
+        plt.show()    
+
+loan_insights = Loan_predictors()
+loan_insights.dataset_charged_off_late()
+loan_insights.dataset_paid_and_current()
+loan_insights.loans_grade_count()
+loan_insights.loans_purpose_count()
+loan_insights.annual_income_comparison()
