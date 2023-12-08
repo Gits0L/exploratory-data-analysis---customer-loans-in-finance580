@@ -228,6 +228,20 @@ label = ['Overall Recovery', 'Recovery Up to 6 Months']
 percentages = ['percent_recovery', 'percent_recovery_up_to_6_months']
 
 class Analysis:
+
+    """
+    Class analyses the loans dataste and their effect on the loan company, in terms of projected loss by percentage of people and total revenue
+
+    Attributes 
+    - loans_df: Loans dataset 
+
+    Methods:
+    - recovery: 
+    - loss_charged_off: Calculates the revenue loss to the company as pecentage of total dataset 
+    - sum_before_charged_off: Calculates the amount of money owed to loan company before loans were marked as charged off
+    money_over_choff_late: Calculates revenue loss due to loans that were charged off or with late payments 
+
+    """
     def __init__(self, loans_df):
         self.loans_df = loans_df 
 
@@ -290,4 +304,5 @@ analyse.sum_before_charged_off()
 analyse.money_owed_choff_late()
 
 class Loan_predictors:
-    def __init(slef, loans_df)
+    def __init(self, loans_df):
+        self.loans_df = 
