@@ -227,50 +227,67 @@ loans_df[loans_df['months_to_recovery'] <= 6]['total_payment'].sum() / loans_df[
 label = ['Overall Recovery', 'Recovery Up to 6 Months']
 percentages = ['percent_recovery', 'percent_recovery_up_to_6_months']
 
+class Analysis:
+    def __init__(self, loans_df):
+        self.loans_df = loans_df 
 
-percent_recovery = loans_df['total_payment'].sum()/loans_df['loan_amount'].sum() * 100
-total_payment = loans_df['total_payment'].sum()
-loan_amount = loans_df['loan_amount']
-labels = ['Total payment', 'Loan amount']
-plt.bar(labels,  color=['red', 'blue'])
-plt.ylabel('Percentage (%)')
-plt.title('Loan Recovery Analysis')
-plt.ylim(0, 100)
-plt.show()
+    def recovery(self):
+        return loans_df['total_payment'].sum()/loans_df['loan_amount'].sum() * 100
+       # total_payment = loans_df['total_payment'].sum()
+       # loan_amount = loans_df['loan_amount']
+        labels = ['Total payment', 'Loan amount']
+        plt.bar(labels,  color=['red', 'blue'])
+        plt.ylabel('Percentage (%)')
+        plt.title('Loan Recovery Analysis')
+        plt.ylim(0, 100)
+        plt.show()
 
-loan_loss = len(loans_df[loans_df['loan_status'] == 'Charged Off']) #Extracting loans that were charged off
-percentage_loan_loss = (loan_loss/len(loans_df)) * 100  #calculated proportion of charged off loans compared to entire dataset
-print(loan_loss)
-print(round(percentage_loan_loss, 2), '%')
-paid_until_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum()
-print(paid_until_charged_off)
+def loss_charged_off(sef):
+    loan_loss = len(loans_df[loans_df['loan_status'] == 'Charged Off'])
+    return loan_loss #Extracting loans that were charged off
+    percentage_loan_loss = (loan_loss/len(loans_df)) * 100
+    percentage_loan_loss_round = round(percentage_loan_loss, 2)  #calculated proportion of charged off loans compared to entire dataset
+    return percentage_loan_loss_round
+    paid_until_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum()
+    return paid_until_charged_off
 
-sum_paid_until_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum() #amount of money total remaining for loans that were charged off 
-total_loan_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'loan_amount'].sum() #amount of total loan owed for the loans that were charged off
-projected_loss = total_loan_charged_off - sum_paid_until_charged_off
-print(projected_loss)
-late = loans_df[loans_df['loan_status'].str.contains('late', case=False)] #Extracting the collumns where the contents of the loan status collunm is late
-money_owed_late_payments = late['out_prncp'].sum() #loss to company if late payers status changed to charged off
-print(money_owed_late_payments)
-len(loans_df) #extracting the number of loanees total
-number_of_late_payers = len(late) #number of loanees who have late payments
-total_loanees = len(loans_df)
-percentage_owed_over_total = (number_of_late_payers/total_loanees) * 100 #calculates how much of the total loanees the late payees make up 
-percentage_owed_over_total_rounded = round(percentage_owed_over_total, 2)
-print(percentage_owed_over_total_rounded, '%')
-#calculates the proportion of late payers compared to whole dataset 
-percentage_owed_over_total_late = round(percentage_owed_over_total, 2)
-percentage_owed_over_total_charged_off = round(percentage_loan_loss, 2)
-print(f"The percentage of payments in the dataframe that are late is {percentage_owed_over_total}, %")
-print(f"The percentage of payments in the dataframe that are charged off is {percentage_owed_over_total_charged_off}, %")
+def sum_before_charged_off(self):
+    sum_paid_until_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum() #amount of money total remaining for loans that were charged off 
+    total_loan_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'loan_amount'].sum() #amount of total loan owed for the loans that were charged off
+    projected_loss = total_loan_charged_off - sum_paid_until_charged_off
+    return projected_loss
+    late = loans_df[loans_df['loan_status'].str.contains('late', case=False)] #Extracting the collumns where the contents of the loan status collunm is late
+    money_owed_late_payments = late['out_prncp'].sum() #loss to company if late payers status changed to charged off
+    return money_owed_late_payments
+    return len(loans_df) #extracting the number of loanees total
+    number_of_late_payers = len(late) #number of loanees who have late payments
+    total_loanees = len(loans_df)
+    percentage_owed_over_total = (number_of_late_payers/total_loanees) * 100 #calculates how much of the total loanees the late payees make up 
+    percentage_owed_over_total_rounded = round(percentage_owed_over_total, 2)
+    return percentage_owed_over_total_rounded
+    #calculates the proportion of late payers compared to whole dataset 
+    percentage_owed_over_total_late = round(percentage_owed_over_total, 2)
+    percentage_owed_over_total_charged_off = round(percentage_loan_loss, 2)
+    print(f"The percentage of payments in the dataframe that are late is {percentage_owed_over_total}, %")
+    print(f"The percentage of payments in the dataframe that are charged off is {percentage_owed_over_total_charged_off}, %")
 
-money_owed_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'loan_amount'].sum() - loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum()
-print(f'1 {money_owed_charged_off}')
-print(f'2 {money_owed_late_payments}')
-money_owed_charged_off_and_late = (money_owed_late_payments + money_owed_charged_off)/ loans_df['loan_amount'].sum() * 100
-money_owed_charged_off_and_late_rounded = round(money_owed_charged_off_and_late)
-print(f'The percentage of total expected revenue represented by people whose loan status is charged off and late is {money_owed_charged_off_and_late}')
-loans_df_chargedoff = loans_df[loans_df['loan_status'].isin(['Charged Off'])] #Saves data where loan status is charged off 
-loans_df_chargedoff.to_csv('filtered_loans.csv', index=False)
-loans_paid_current = loans_df[loans_df['loan_status'].isin(['Fully paid']) & loans_df['loan_status'].isin(['Current'])] #Saves data where loan status is current
-loans_paid_current.to_csv('paid_and_current_loans.csv', index=False)
+def money_owed_choff_late(self):
+    money_owed_charged_off = loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'loan_amount'].sum() - loans_df.loc[loans_df['loan_status'] == 'Charged Off', 'total_payment'].sum()
+    print(f'The amount of revenue owed by loanees whose loan status is either charged off or late is {money_owed_charged_off}')
+    print(f'2 {money_owed_late_payments}')
+    money_owed_charged_off_and_late = (money_owed_late_payments + money_owed_charged_off)/ loans_df['loan_amount'].sum() * 100
+    money_owed_charged_off_and_late_rounded = round(money_owed_charged_off_and_late)
+    print(f'The percentage of total expected revenue represented by people whose loan status is charged off and late is {money_owed_charged_off_and_late}')
+    loans_df_chargedoff = loans_df[loans_df['loan_status'].isin(['Charged Off'])] #Saves data where loan status is charged off 
+    loans_df_chargedoff.to_csv('filtered_loans.csv', index=False)
+    loans_paid_current = loans_df[loans_df['loan_status'].isin(['Fully paid']) & loans_df['loan_status'].isin(['Current'])] #Saves data where loan status is current
+    loans_paid_current.to_csv('paid_and_current_loans.csv', index=False)
+
+analyse = Analysis(loans_df)
+analyse.recovery()
+analyse.loss_charged_off()
+analyse.sum_before_charged_off()
+analyse.money_owed_choff_late()
+
+class Loan_predictors:
+    def __init(slef, loans_df)
