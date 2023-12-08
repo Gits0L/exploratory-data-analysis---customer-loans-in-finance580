@@ -10,8 +10,7 @@
      
 3. Installation
 4. Usage
-5. File strutcute
-6. Liecensing information
+5. File structure
 
 ### 1. Project infromation 
 This project involves a comprehensive analysis of a loan portfolio database, leveraging a range of statistical skills such as (mention specific statistical skills) and employing advanced data visualization techniques like (mention specific data visualization techniques). The primary objective is to reinforce and consolidate the data analysis skills imparted during the analytics module of the Aicore coding bootcamp. Participants in this project will step into the role of a data analyst operating within a financial institution.The project allows the user to take on the role of a data analysist working within a financial institution. 
@@ -34,12 +33,18 @@ The Aim of the project is to become familiar with the loan information dataset i
 - Using data to make informed predictions and suggestions
 
   #### Installation
+  - Clone GitHub repository git clone https://github.com/Gits0L/exploratory-data-analysis---customer-loans-in-finance580.git
+
+  - Navigate into the project directory cd exploratory-data-analysis---customer-loans-in-finance580
 
   #### Usage
 
-  #### File structure
+  - Use code to import import and connect to database using credentials, clean and analyse data 
 
-  #### Licesning information 
+  #### File structure
+  - db_utils.py - Final version 
+  - loans_keywords - Glossary of loan columns to understand dataset
+
 
 
 
