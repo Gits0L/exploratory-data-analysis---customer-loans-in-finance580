@@ -19,7 +19,7 @@ This project involves a comprehensive analysis of a loan portfolio database, lev
 The function of this project is to gain proficiency in navigating and interpreting the loan information dataset. This is essential to enable the company to make well-informed decisions regarding loan approvals and, simultaneously, to effectively manage and mitigate any associated risks. 
 
 #### 1.2 Aims
-The Aim of the project is to become familiar with the loan information dataset in order to allow the company to make informed decision about loan approvals and to mitigate any incurred risks. It also serves as a significant milestone within the data sicence bootcamp, offering an industry specific example for users to understand the steps involved in analysing a dataset and the impact of analytical insights on strategic decision-making within a real-world business context.
+The aim of the project is to become familiar with the loan information dataset in order to allow the company to make informed decision about loan approvals and to mitigate any incurred risks. It also serves as a significant milestone within the data sicence bootcamp, offering an industry specific example for users to understand the steps involved in analysing a dataset and the impact of analytical insights on strategic decision-making within a real-world business context.
 
 #### 1.3 Learning objectives
 - Using classes
@@ -33,9 +33,11 @@ The Aim of the project is to become familiar with the loan information dataset i
 - Using data to make informed predictions and suggestions
 
   #### Installation
-  - Clone GitHub repository git clone https://github.com/Gits0L/exploratory-data-analysis---customer-loans-in-finance580.git
+  - Clone GitHub repository:
+    git clone https://github.com/Gits0L/exploratory-data-analysis---customer-loans-in-finance580.git
 
-  - Navigate into the project directory cd exploratory-data-analysis---customer-loans-in-finance580
+  - Navigate into the project directory:
+    cd exploratory-data-analysis---customer-loans-in-finance580
 
   #### Usage
 
