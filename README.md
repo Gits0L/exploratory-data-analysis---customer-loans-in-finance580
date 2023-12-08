@@ -42,9 +42,10 @@ The Aim of the project is to become familiar with the loan information dataset i
   - Use code to import import and connect to database using credentials, clean and analyse data 
 
   #### File structure
-  - db_utils.py - Final version 
-  - loans_keywords - Glossary of loan columns to understand dataset
-
+  - README.md: Repository information 
+  - db_utils.py: Final version 
+  - loans_keywords: Glossary of loan columns to understand dataset
+ 
 
 
 
