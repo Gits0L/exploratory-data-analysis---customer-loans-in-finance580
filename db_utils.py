@@ -1,19 +1,9 @@
 import matplotlib.pyplot as plt
-
-
-import yaml
-
-
 import pandas as pd
-
-
 import psycopg2
-
-
-from sqlalchemy import create_engine
-
-
 import sqlalchemy
+from sqlalchemy import create_engine
+import yaml
 
 """
 Loads in yaml file including the credentials to create and connect to databse
