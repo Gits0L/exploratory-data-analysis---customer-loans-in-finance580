@@ -13,7 +13,7 @@
 5. File structure
 
 ### 1. Project infromation 
-This project involves a comprehensive analysis of a loan portfolio database, leveraging a range of statistical skills such as (mention specific statistical skills) and employing advanced data visualization techniques like (mention specific data visualization techniques). The primary objective is to reinforce and consolidate the data analysis skills imparted during the analytics module of the Aicore coding bootcamp. Participants in this project will step into the role of a data analyst operating within a financial institution.The project allows the user to take on the role of a data analysist working within a financial institution. 
+This project involves a comprehensive analysis of a loan portfolio database, leveraging a range of statistical skills and employing advanced data visualization techniques. The primary objective is to reinforce and consolidate the data analysis skills imparted during the analytics module of the Aicore coding bootcamp. Participants in this project will step into the role of a data analyst operating within a financial institution.The project allows the user to take on the role of a data analysist working within a financial institution. 
 
 #### 1.1 Function 
 The function of this project is to gain proficiency in navigating and interpreting the loan information dataset. This is essential to enable the company to make well-informed decisions regarding loan approvals and, simultaneously, to effectively manage and mitigate any associated risks. 
