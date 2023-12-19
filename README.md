@@ -41,7 +41,7 @@ The aim of the project is to become familiar with the loan information dataset i
 
   #### Usage
 
-  - Use code to import import and connect to database using credentials, clean and analyse data 
+  - Use code to import import and connect to database using credentials, clean and analyse financial data 
 
   #### File structure
   - README.md: Repository information 
